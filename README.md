@@ -54,7 +54,7 @@ There is one Borg cube in the galaxy, entering its quadrant sets off a series of
 
 Stardate
 
-You a limited amount of time to complete the mission. You lose when time runs out.
+You have a limited amount of time to complete the mission, the mission end stardate is shown in the short range scanner's output. You lose when time runs out.
 
 
 
