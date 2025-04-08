@@ -32,7 +32,7 @@ Each quadrant is depicted by three single digit numbers. The first number is the
 
 Combat
 
-If you enter a quadrant with a one or more Klingon ships, your status will change to Red Alert. You can fire phasers or launch a photon torpedo.
+If you enter a quadrant with one or more Klingon ships, your status will change to Red Alert. You can fire phasers or launch a photon torpedo.
 But first, you should Raise Shields by transferring power from the main reserve to the shields.
 
 For phasers, you specify the power to use, which automatically targets all the Klingon ships, dividing your entered power equally among the Klingon ships. 
