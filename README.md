@@ -40,7 +40,7 @@ Any Klingons not destroyed will return fire, damaging your shields.
 
 If your shields drop to zero, the Klingon phasers will damage systems on the Enterprise. 
 
-You can view which systems are damaged and how long they will take to repair using the Damage Report" command. In some cases you will need to dock at a base for repair (see below about bases.)
+You can view which systems are damaged and how long they will take to repair using the Damage Report command. In some cases you will need to dock at a base for repair (see below about bases.)
 
 Photon torpedos need to be aimed, but they destroy the enemy vessel 100% of the time when they hit. 
 
