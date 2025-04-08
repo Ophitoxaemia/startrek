@@ -50,7 +50,7 @@ You can resupply and repair the Enterprise by docking at a base. To do so, use i
 
 The Borg
 
-There is one Borg cube in the galaxy, entering its quadrant sets off an series of events. First, the Borg will scan the Enterprise. If you do not leave the quadrant immediately, the Borg ship will attack the Enterprise. If you warp out of the quadrant, the Borg ship starts methodically moving from quadrant to quadrant, destroying any bases it finds. 
+There is one Borg cube in the galaxy, entering its quadrant sets off a series of events. First, the Borg will scan the Enterprise. If you do not leave the quadrant immediately, the Borg ship will attack the Enterprise. If you warp out of the quadrant, the Borg ship starts methodically moving from quadrant to quadrant, destroying any bases it finds. 
 
 Stardate
 
