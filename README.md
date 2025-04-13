@@ -6,7 +6,8 @@ It was written on a Clockwork PicoCalc using the default PicoMite implementation
 Getting started 
 1. Load the game into program memory
 2. Press F2 to run the game
-3. Enter 'c' at the "Command?" prompt to see list of commands. You command the ship using these options.
+3. Select the challenge level. Admiral is the most difficult.
+4. Enter 'c' at the "Command?" prompt to see list of commands. You command the ship using these options.
 
 The goal
 
