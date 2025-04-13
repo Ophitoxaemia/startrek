@@ -1,11 +1,17 @@
-restart: Print "Star Trek"
+restart: Print "S T A R  T R E K"
 Print
 Option angle degrees
 sd=3427
 sdlose=sd+19
 numk=0
 numcmd=0
-epwr=5000
+Print "Select level:"
+Print "Admiral:   1"
+Print "Captain:   2"
+Print "Commander: 3"
+Print "Ensign:    4"
+Input ""; level
+epwr=1000+level*1000
 es=0
 numpt=10
 Dim dmg(7)
@@ -135,7 +141,7 @@ If Left$(cmd$,1) = "s" Then
   EndIf
   If dmg(0)>0 Then
     Print "Short range sensors damaged."
-    GoTo skip
+    GoTo skipscan
   EndIf
   For sy=0 To 7
     For sx=0 To 7
@@ -146,7 +152,7 @@ If Left$(cmd$,1) = "s" Then
     ElseIf sy=1 Then
       Print "Klingons  "numk
     ElseIf sy=2 Then
-      Print "Energy    "epwr
+      Print "Energy    "Int(epwr)
     ElseIf sy=3 Then
       Print "Photon Ts "numpt
     ElseIf sy=4 Then
@@ -227,15 +233,30 @@ If Left$(cmd$,1) = "i" Then
   epwr=epwr-power*5
   deg = (course-1)*360/8
   sec$(esx,esy)=" . "
-  esx = Cint(esx+Cos(deg)*power)
-  esy = Cint(esy-Sin(deg)*power)
+  Print esx,esy
+  For p=1 To power
+    esx = Int(esx+Cos(deg)*p)
+    esy = Int(esy-Sin(deg)*p)
+    Print "."esx,esy
+    oklow = esx>0 And esy>0
+    okhi=esx<8 And esy<8
+    If oklow And okhi Then
+    If sec$(esx,esy)=" * " Then
+Print
+Print "The Enterprise has hit a star."
+Print "Game over."
+End
+    EndIf
+    EndIf
+  Next p
+  Print esx,esy
   sec$(esx,esy)="-E-"
   b1 = bx=esx-1 And by=esy
   b2 = bx=esx+1 And by=esy
   b3 = by=esy-1 And bx=esx
   b4 = by=esy+1 And bx=esx
   If b1 Or b2 Or b3 Or b4 Then
-    epwr=5000
+    epwr=1000+1000*level
     numpt=10
     Print
     Print "Ship resupplied!"
@@ -322,6 +343,10 @@ If Left$(cmd$,1) = "r" Then
   epwr=epwr-rs
   Call "checkpwr"
   es=es+rs
+  If es>1000 Then
+    Print "Max shields is 1000"
+    es=1000
+  EndIf
 EndIf
 
 If Left$(cmd$,1) = "d" Then
@@ -346,6 +371,7 @@ skip:
 sd=sd+.2
 If sd>sdlose Then
   Print "Time ran out, game over"
+  Print "Level "level
   End
 EndIf
 
@@ -441,15 +467,16 @@ Print "The Klingon is destroyed!"
 klingons=klingons-1
 numk=numk-1
 If numk<=0 Then
-  Print "You won!"
+  Print "You won at level "level"!"
   End
 EndIf
 End Sub
 
 Sub checkpwr
 If epwr<0 Then
-Print "Enterprise out of power, game ove"
-r""
+Print "Enterprise out of power."
+Print "Game over"
+Print "Level "level
 End
 EndIf
 End Sub
