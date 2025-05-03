@@ -235,13 +235,13 @@ If Left$(cmd$,1) = "i" Then
   sec$(esx,esy)=" . "
   Print esx,esy
   For p=1 To power
-    esx = Int(esx+Cos(deg)*p)
-    esy = Int(esy-Sin(deg)*p)
-    Print "."esx,esy
-    oklow = esx>0 And esy>0
-    okhi=esx<8 And esy<8
+    tesx = Cint(esx+Cos(deg)*p)
+    tesy = Cint(esy-Sin(deg)*p)
+    'Print "."tesx,tesy
+    oklow = tesx>0 And tesy>0
+    okhi=tesx<8 And tesy<8
     If oklow And okhi Then
-    If sec$(esx,esy)=" * " Then
+    If sec$(tesx,tesy)=" * " Then
 Print
 Print "The Enterprise has hit a star."
 Print "Game over."
@@ -249,7 +249,9 @@ End
     EndIf
     EndIf
   Next p
-  Print esx,esy
+  esx=tesx
+  esy=tesy
+  'Print esx,esy
   sec$(esx,esy)="-E-"
   b1 = bx=esx-1 And by=esy
   b2 = bx=esx+1 And by=esy
