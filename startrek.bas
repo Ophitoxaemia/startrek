@@ -1,4 +1,5 @@
-restart: Print "S T A R  T R E K"
+restart: CLS
+Print "S T A R  T R E K"
 Print
 Option angle degrees
 sd=3427
@@ -16,6 +17,9 @@ es=0
 numpt=10
 Dim dmg(7)
 bcount=0
+
+Print
+Print "Enter c for command list"
 
 For d=0 To 6
  dmg(d)=0 'damage in turns to repair
@@ -67,14 +71,18 @@ bases = quad(eqx,eqy,1)
 klingons = quad(eqx,eqy,2)
 
 For s=0 To stars-1
-  x=r8()
-  y=r8()
+  Do
+    x=r8()
+    y=r8()
+  Loop Until sec$(x,y)=" . "
   sec$(x,y)=" * "
 Next s
 
 For b=0 To bases-1
-  x=r8()
-  y=r8()
+  Do
+    x=r8()
+    y=r8()
+  Loop Until sec$(x,y)=" . "
   sec$(x,y)="-B-"
   bx=x
   by=y
@@ -233,7 +241,7 @@ If Left$(cmd$,1) = "i" Then
   epwr=epwr-power*5
   deg = (course-1)*360/8
   sec$(esx,esy)=" . "
-  Print esx,esy
+  'Print esx,esy
   For p=1 To power
     tesx = Cint(esx+Cos(deg)*p)
     tesy = Cint(esy-Sin(deg)*p)
@@ -247,6 +255,15 @@ Print "The Enterprise has hit a star."
 Print "Game over."
 End
     EndIf
+'    Print tesx,tesy
+'    Print sec$(tesx,tesy)
+    If sec$(tesx,tesy)="-B-" Then
+Print
+Print "The Enterprise has hit a base."
+Print "Game over."
+End
+    EndIf
+
     EndIf
   Next p
   esx=tesx
@@ -278,6 +295,10 @@ Print "range sensors"
 
   Print "Phasers ready"
   Input "Power"; pp
+  If pp>500 Then
+    pp=500
+    Print "Max power is 500"
+  EndIf
   epwr=epwr-pp
   If klingons>0 Then
     eachpwr=pp/klingons
@@ -287,8 +308,7 @@ Print "range sensors"
         kh(k)=kh(k)-eachpwr
         If kh(k)<0 Then
           sec$(kx(k),ky(k))=" . "
-quad(eqx,eqy,2)=quad(eqx,eqy,2)-1
-          Call "checkk"
+          Call "kdie"
         EndIf
       EndIf
     Next k
@@ -323,12 +343,11 @@ If Left$(cmd$,1) = "t" Then
       Exit For
     ElseIf sec$(tx,ty)=" K " Then
       done=true
-      sec$(tx,ty)=" . "
       For k=0 To 5
         If kx(k)=tx And ky(k)=ty Then
-          kh(k)=0
-quad(eqx,eqy,2)=quad(eqx,eqy,2)-1
-          Call "checkk"
+          sec$(tx,ty)=" . "
+          Call "kdie"
+          Exit For
         EndIf
       Next k
       Exit For
@@ -464,16 +483,6 @@ epwr=epwr-pwr
 Call "checkpwr"
 End Sub
 
-Sub kdie
-Print "The Klingon is destroyed!"
-klingons=klingons-1
-numk=numk-1
-If numk<=0 Then
-  Print "You won at level "level"!"
-  End
-EndIf
-End Sub
-
 Sub checkpwr
 If epwr<0 Then
 Print "Enterprise out of power."
@@ -483,10 +492,12 @@ End
 EndIf
 End Sub
 
-Sub checkk
+Sub kdie
 Print
 Print "Klingon at"kx(k)"-";
 Print ky(k)" is destroyed!"
+kh(k)=0
+quad(eqx,eqy,2)=quad(eqx,eqy,2)-1
 klingons=klingons-1
 numk=numk-1
 If numk<=0 Then
